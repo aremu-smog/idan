@@ -24,7 +24,7 @@ iiiiiiii   ddddddddd   ddddd  aaaaaaaaaa  aaaa nnnnnn    nnnnnn
 
 SUPPORTED_PACKAGES=("npm" "yarn" "pnpm")
 
-SELECTED_PACKAGE_MANAGER_FILE="/tmp/value.dat"
+SELECTED_PACKAGE_MANAGER_FILE="/tmp/idan.dat"
 
 # if we don't have a file, start at zero
 if [ ! -f "$SELECTED_PACKAGE_MANAGER_FILE" ]; then
@@ -62,11 +62,11 @@ COUNT_INSTALLED_PACKAGE_MANAGERS=$COUNT_INSTALLED_PACKAGE_MANAGERS+1
 echo "${IS_SUPPORTED_ICON} ${package} | ${PACKAGE_VERSION}"
 done
 
-if [[ COUNT_INSTALLED_PACKAGE_MANAGERS != 0 ]]; then
+if [[ COUNT_INSTALLED_PACKAGE_MANAGERS == 0 ]]; then
   echo "No node package manager installed on your machine"
-  echo "Yarn: https://yarn.org"
-  echo "NPM:  https://npm.org"
-  echo "Pnpm: https://pnpm.org"
+  echo "Yarn: https://yarnpkg.com/"
+  echo "NPM:  https://nodejs.org/en"
+  echo "Pnpm: https://pnpm.io/"
 fi
 }
 
