@@ -1,0 +1,104 @@
+#!/bin/bash
+
+
+function show_idan(){
+  echo "                   dddddddd                                   
+  iiii              d::::::d                                   
+ i::::i             d::::::d                                   
+  iiii              d::::::d                                   
+                    d:::::d                                    
+iiiiiii     ddddddddd:::::d   aaaaaaaaaaaaa  nnnn  nnnnnnnn    
+i:::::i   dd::::::::::::::d   a::::::::::::a n:::nn::::::::nn  
+ i::::i  d::::::::::::::::d   aaaaaaaaa:::::an::::::::::::::nn 
+ i::::i d:::::::ddddd:::::d            a::::ann:::::::::::::::n
+ i::::i d::::::d    d:::::d     aaaaaaa:::::a  n:::::nnnn:::::n
+ i::::i d:::::d     d:::::d   aa::::::::::::a  n::::n    n::::n
+ i::::i d:::::d     d:::::d  a::::aaaa::::::a  n::::n    n::::n
+ i::::i d:::::d     d:::::d a::::a    a:::::a  n::::n    n::::n
+i::::::id::::::ddddd::::::dda::::a    a:::::a  n::::n    n::::n
+i::::::i d:::::::::::::::::da:::::aaaa::::::a  n::::n    n::::n
+i::::::i  d:::::::::ddd::::d a::::::::::aa:::a n::::n    n::::n
+iiiiiiii   ddddddddd   ddddd  aaaaaaaaaa  aaaa nnnnnn    nnnnnn
+"
+}
+
+SUPPORTED_PACKAGES=("npm" "yarn" "pnpm")
+
+SELECTED_PACKAGE_MANAGER_FILE="/tmp/value.dat"
+
+# if we don't have a file, start at zero
+if [ ! -f "$SELECTED_PACKAGE_MANAGER_FILE" ]; then
+    PACKAGE_MANAGER=""
+
+# otherwise read the value from the file
+else
+    PACKAGE_MANAGER=$(cat "$SELECTED_PACKAGE_MANAGER_FILE")
+fi
+
+function check_installed_packages(){
+COUNT_INSTALLED_PACKAGE_MANAGERS=0
+
+echo ""
+echo "✅:Package in use | 🌟:Installed | ❌: Not Installed"
+echo ""
+echo "Supported Package Managers are:"
+echo ""
+
+for package in "${SUPPORTED_PACKAGES[@]}"; do
+PACKAGE_MANAGER_CHECK=$(which $package)
+PACKAGE_VERSION="n/a"
+if [[ $PACKAGE_MANAGER_CHECK != "" ]]; then
+IS_SUPPORTED=true
+IS_SUPPORTED_ICON="🌟"
+PACKAGE_VERSION=$($package -v)
+if [[ "$PACKAGE_MANAGER" == "$package" ]]; then
+IS_SUPPORTED_ICON="✅"
+fi
+else
+IS_SUPPORTED_ICON="❌"
+IS_SUPPORTED=false
+fi
+COUNT_INSTALLED_PACKAGE_MANAGERS=$COUNT_INSTALLED_PACKAGE_MANAGERS+1
+echo "${IS_SUPPORTED_ICON} ${package} | ${PACKAGE_VERSION}"
+done
+
+if [[ COUNT_INSTALLED_PACKAGE_MANAGERS != 0 ]]; then
+  echo "No node package manager installed on your machine"
+  echo "Yarn: https://yarn.org"
+  echo "NPM:  https://npm.org"
+  echo "Pnpm: https://pnpm.org"
+fi
+}
+
+
+function set_package_manager(){
+  echo "$1" > "$SELECTED_PACKAGE_MANAGER_FILE"
+  PACKAGE_MANAGER=$1
+  echo "idan will now use ${PACKAGE_MANAGER} as your package manager"
+}
+
+if [[ "$1" == "shadow" ]]; then
+check_installed_packages
+elif [[ "$1" == "gangan" ]]; then
+show_idan
+elif [[ "$1" == "yarn" || "$1" == "npm"  ]]; then
+set_package_manager $1
+else
+  if [[ $PACKAGE_MANAGER != "" ]]; then
+    if [[ "$1" == "obtain" ]]; then
+      $PACKAGE_MANAGER add $@
+    elif [[ "$1" == "comot" ]]; then
+      $PACKAGE_MANAGER remove $@
+    else
+      $PACKAGE_MANAGER $@
+    fi
+  else
+  show_idan
+  fi
+fi
+
+
+
+
+
+
