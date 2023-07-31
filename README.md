@@ -11,6 +11,12 @@ A bash script that 'wraps' around any nodejs package manager. Tbh, it's just a w
 bash install.sh
 ```
 
+- Add the following to your `.zprofile` or `.bash_profile`
+
+```bash
+export PATH="$HOME/bin:$PATH"
+```
+
 - To check if `idan` is installed, run
 
 ```bash
