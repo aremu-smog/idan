@@ -20,7 +20,7 @@ i::::::i  d:::::::::ddd::::d a::::::::::aa:::a n::::n    n::::n
 iiiiiiii   ddddddddd   ddddd  aaaaaaaaaa  aaaa nnnnnn    nnnnnn
 ```
 
-A simple package manager that allows you
+A bash script that 'wraps' around any nodejs (yarn|npm|pnpm) package manager
 
 # Installation
 
