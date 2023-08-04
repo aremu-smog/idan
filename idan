@@ -19,6 +19,8 @@ i::::::id::::::ddddd::::::dda::::a    a:::::a  n::::n    n::::n
 i::::::i d:::::::::::::::::da:::::aaaa::::::a  n::::n    n::::n
 i::::::i  d:::::::::ddd::::d a::::::::::aa:::a n::::n    n::::n
 iiiiiiii   ddddddddd   ddddd  aaaaaaaaaa  aaaa nnnnnn    nnnnnn
+
+Built by: Aremu Smog
 "
 }
 
@@ -74,29 +76,41 @@ fi
 function set_package_manager(){
   echo "$1" > "$SELECTED_PACKAGE_MANAGER_FILE"
   PACKAGE_MANAGER=$1
-  echo "idan will now use ${PACKAGE_MANAGER} as your package manager"
+  echo "🥳 idan will now use ${PACKAGE_MANAGER} as your package manager"
 }
 
-if [[ "$1" == "shadow" ]]; then
-check_installed_packages
-elif [[ "$1" == "gangan" ]]; then
-show_idan
-elif [[ "$1" == "yarn" || "$1" == "npm"  ]]; then
-set_package_manager $1
-else
+function handle_input(){
   if [[ $PACKAGE_MANAGER != "" ]]; then
-    if [[ "$1" == "obtain" ]]; then
-      $PACKAGE_MANAGER add $@
-    elif [[ "$1" == "comot" ]]; then
-      $PACKAGE_MANAGER remove $@
-    else
-      $PACKAGE_MANAGER $@
-    fi
+    case $1 in
+      obtain)
+        $PACKAGE_MANAGER add $@
+      ;;
+      comot)
+        $PACKAGE_MANAGER remove $@
+      ;;
+      *)
+        $PACKAGE_MANAGER $@
+        ;;
+    esac
   else
   show_idan
   fi
-fi
+}
 
+case $1 in
+  shadow)
+    check_installed_packages
+  ;;
+  yarn | npm | pnpm)
+    set_package_manager $1
+  ;;
+  gangan)
+    show_idan
+  ;;
+  *)
+    handle_input
+  ;;
+esac
 
 
 
