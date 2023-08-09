@@ -99,12 +99,25 @@ function handle_input(){
   fi
 }
 
+function update(){
+  echo ":=============================:"
+  echo ""
+  printf "⬆️ Kindly : \e]8;;http://github.com/aremu-smog/idan/releases\e\\GitHub for updates\e]8;;\e\\ \n"
+  echo ""
+  echo "Auto updates coming soon 👀"
+  echo ""
+  echo ":=============================:"
+}
+
 case $1 in
   shadow)
     check_installed_packages
   ;;
   yarn | npm | pnpm)
     set_package_manager $1
+  ;;
+  update)
+    update
   ;;
   gangan)
     show_idan
