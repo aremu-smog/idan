@@ -2,7 +2,7 @@
 
 
 function show_idan(){
-  echo "            dddddddd                                   
+  echo  -e "\033[0;36m                    dddddddd                                   
   iiii              d::::::d                                   
  i::::i             d::::::d                                   
   iiii              d::::::d                                   
@@ -19,16 +19,18 @@ i::::::id::::::ddddd::::::dda::::a    a:::::a  n::::n    n::::n
 i::::::i d:::::::::::::::::da:::::aaaa::::::a  n::::n    n::::n
 i::::::i  d:::::::::ddd::::d a::::::::::aa:::a n::::n    n::::n
 iiiiiiii   ddddddddd   ddddd  aaaaaaaaaa  aaaa nnnnnn    nnnnnn
-
-Built by: Aremu Smog
 "
+
+printf "💻 Built by: \e]8;;http://twitter.com/aremu_smog\e\\Aremu Smog\e]8;;\e\\"
+echo ""
+
 }
 
 SUPPORTED_PACKAGES=("npm" "yarn" "pnpm")
 
 SELECTED_PACKAGE_MANAGER_FILE="/tmp/idan.dat"
 
-# if we don't have a file, start at zero
+# if there is no file, means no package manager selected
 if [ ! -f "$SELECTED_PACKAGE_MANAGER_FILE" ]; then
     PACKAGE_MANAGER=""
 
@@ -41,7 +43,7 @@ function check_installed_packages(){
 COUNT_INSTALLED_PACKAGE_MANAGERS=0
 
 echo ""
-echo "✅:Package in use | 🌟:Installed | ❌: Not Installed"
+echo -e "\033[0;36m✅:Package in use | 🌟:Installed | ❌: Not Installed"
 echo ""
 echo "Supported Package Managers are:"
 echo ""
