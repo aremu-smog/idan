@@ -57,3 +57,7 @@ idan shadow
 | `yarn \| npm \| pnpm` | Set your preferred package manager     |
 | `obtain`              | Install an npm/yarn/pnpm package       |
 | `comot`               | Remove an npm/yarn/pnpm package        |
+
+## Feedback
+
+This is still a work in progress and I would love your feedback. You can either open an issue or shoot me a mail: aremuoluwagbamila@gmail.com
