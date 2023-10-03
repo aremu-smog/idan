@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Text Formatting
+CLEAR="\033[0;0m"
+
+BLUE="\033[0;36m"
+
+BOLD="\033[0;1m"
 
 function show_idan(){
-  echo  -e "\033[0;36m                    dddddddd                                   
+  echo  -e "${BLUE}                   dddddddd                                   
   iiii              d::::::d                                   
  i::::i             d::::::d                                   
   iiii              d::::::d                                   
@@ -43,7 +49,7 @@ function check_installed_packages(){
 COUNT_INSTALLED_PACKAGE_MANAGERS=0
 
 echo ""
-echo -e "\033[0;36m✅:Package in use | 🌟:Installed | ❌: Not Installed"
+echo -e "✅:Package in use | 🌟:Installed | ❌: Not Installed"
 echo ""
 echo "Supported Package Managers are:"
 echo ""
@@ -63,7 +69,7 @@ IS_SUPPORTED_ICON="❌"
 IS_SUPPORTED=false
 fi
 COUNT_INSTALLED_PACKAGE_MANAGERS=$COUNT_INSTALLED_PACKAGE_MANAGERS+1
-echo "${IS_SUPPORTED_ICON} ${package} | ${PACKAGE_VERSION}"
+echo -"${IS_SUPPORTED_ICON} ${package} | ${PACKAGE_VERSION}"
 done
 
 if [[ COUNT_INSTALLED_PACKAGE_MANAGERS == 0 ]]; then
@@ -78,7 +84,7 @@ fi
 function set_package_manager(){
   echo "$1" > "$SELECTED_PACKAGE_MANAGER_FILE"
   PACKAGE_MANAGER=$1
-  echo "🥳 idan will now use ${PACKAGE_MANAGER} as your package manager"
+  echo -e "🥳 idan will now use ${BOLD}${PACKAGE_MANAGER}${CLEAR} as your package manager"
 }
 
 function handle_input(){
@@ -102,7 +108,7 @@ function handle_input(){
 function update(){
   echo ":=============================:"
   echo ""
-  printf "⬆️ Kindly : \e]8;;http://github.com/aremu-smog/idan/releases\e\\GitHub for updates\e]8;;\e\\ \n"
+  printf "⬆️ Kindly check : \e]8;;http://github.com/aremu-smog/idan/releases\e\\GitHub for updates\e]8;;\e\\ \n"
   echo ""
   echo "Auto updates coming soon 👀"
   echo ""

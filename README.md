@@ -24,7 +24,7 @@ A bash script that 'wraps' around any nodejs (yarn|npm|pnpm) package manager
 
 # Installation
 
-- Clone this repo and run
+- Clone this repo
 - Move into the repo directory and run
 
 ```bash
@@ -46,3 +46,14 @@ idan gangan
 
 idan shadow
 ```
+
+## Available Commands
+
+| Command               | Description                            |
+| --------------------- | -------------------------------------- |
+| `gangan`              | About the software                     |
+| `shadow`              | Get information about package managers |
+| `update`              | How to update the software             |
+| `yarn \| npm \| pnpm` | Set your preferred package manager     |
+| `obtain`              | Install an npm/yarn/pnpm package       |
+| `comot`               | Remove an npm/yarn/pnpm package        |
